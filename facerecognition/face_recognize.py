@@ -1,4 +1,5 @@
-import cv2, sys, numpy, os
+import cv2, sys,os
+import numpy
 # following are the  recognising codes for the faces
 
 class data:
@@ -10,7 +11,7 @@ class data:
 
         path = os.path.join(datasets, sub_data)
         if not os.path.isdir(path):
-        os.mkdir(path)
+            os.mkdir(path)
         (width, height) = (130, 100)    # defining the size of images 
 
 
@@ -22,18 +23,18 @@ class data:
         while count < 31: 
             (_, im) = webcam.read()
             gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 4)
-        for (x,y,w,h) in faces:
-            cv2.rectangle(im,(x,y),(x+w,y+h),(255,0,0),2)
-            face = gray[y:y + h, x:x + w]
-            face_resize = cv2.resize(face, (width, height))
-            cv2.imwrite('%s/%s.png' % (path,count), face_resize)
-        count += 1
+            faces = face_cascade.detectMultiScale(gray, 1.3, 4)
+            for (x,y,w,h) in faces:
+                cv2.rectangle(im,(x,y),(x+w,y+h),(255,0,0),2)
+                face = gray[y:y + h, x:x + w]
+                face_resize = cv2.resize(face, (width, height))
+                cv2.imwrite('%s/%s.png' % (path,count), face_resize)
+            count += 1
     
-        cv2.imshow('OpenCV', im)
-        key = cv2.waitKey(10)
-        if key == 27:
-            break
+            cv2.imshow('OpenCV', im)
+            key = cv2.waitKey(10)
+            if key == 27:
+                break
 
 class recognise():
 
@@ -59,7 +60,7 @@ class recognise():
     # Create a Numpy array from the two lists above
     (images, labels) = [numpy.array(lis) for lis in [images, labels]]
 
-    model = cv2.face.createFisherFaceRecognizer()   
+    model = cv2.createFisherFaceRecognizer()   
     model.train(images, labels)
 
     # Part 2: Use fisherRecognizer on camera stream
@@ -81,11 +82,18 @@ class recognise():
             if prediction<500:
 
 	           cv2.putText(im,'%s - %.0f' % (names[prediction],prediction),(x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
-    	   else:
+            else:
     	       cv2.putText(im,'not recognized',(x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
 
         cv2.imshow('OpenCV', im)
         key = cv2.waitKey(10)
         if key == 27:
-        break
+            break
     print "Verified"
+if (__name__==__main__):
+    choice = raw_input("enter 'C' to create dataset for your image or enter 'R' to recognise face")
+    choice = choice.lower()
+if choice == 'C':
+    name = raw_input("Enter the name of the face for which you want to create the dataset")
+    d = recognise(name)
+
