@@ -6,4 +6,7 @@ sentence_end_token = "SENTENCE_END"
 
 '''reading data'''
 print "Reading CSV file...."
-with open('data/comment-2015-08.csv')
+with open('data/comment-2015-08.csv','rb') as f:
+	reader = csv.reader(f, skipinitialspace = True)
+	reader.next()
+	sentences = itertools.
