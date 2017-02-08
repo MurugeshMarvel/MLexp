@@ -1,4 +1,4 @@
-"""Learn to estimate functions from examples. (Chapters 18-20)"""
+
 
 from utils import (
     removeall, unique, product, argmax, argmax_random_tie, isclose,
