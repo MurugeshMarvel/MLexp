@@ -6,5 +6,6 @@ This repository helps in getting Understand Practicle application of Artificial 
 5. Evolutionary Algorithms
 6. expert System
 8. Pattern Matching
+9. Automation stuffs
 and so on
  Let me know if you are willing to contribute for my repository
