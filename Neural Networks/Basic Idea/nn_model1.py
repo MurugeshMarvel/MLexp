@@ -11,11 +11,10 @@ print x
 print "The output "
 
 print y
-
 #building Model
 
 
-epoch_no = 60000
+epoch_no = 600000
 
 weight0 = 2*np.random.random((3,4)) - 1
 weight1 = 2*np.random.random((4,1)) - 1
@@ -52,8 +51,14 @@ for j in xrange(epoch_no):
 
 	weight0 += l0.T.dot(l1_delta)
 	weight1 += l1.T.dot(l2_del)
+	if j == 1 :
+		print error.mean()
 
-x1 = np.array([[1,1,1]])
+	elif j == 200000:
+		print error.mean()
+	elif j == 599999:
+		print error.mean()
+'''x1 = np.array([[1,1,1]])
 lay0 = x1
 lay1 = nonlin(np.dot(lay0,weight0))
 lay2 = nonlin(np.dot(lay1,weight1))
@@ -62,4 +67,4 @@ error = y - lay2
 print "######"
 print y
 print "#####"
-print lay2
+print lay2'''
