@@ -19,4 +19,19 @@ def visualise(data):
     plt.xticks([w*7*24 for w in range(10)], ['week %i ' %w for w in range(10)])
     if models:
         if mx is None:
-            mx = 
+            if mx = None:
+                mx = sc.linspace(0, x[-1], 1000)
+            for model, style, color in zip(models, linestyles, colors):
+                plt.plot(mx, model(mx), linestyle = style, linewidth,c = color)
+            plt.legend(['d = %i' %m.order for m in models], loc = 'upper left')
+        plt.autoscale(tight = True)
+        plt.ylim(ymin=0)
+        if ymax:
+            plt.ylim(ymax=ymax)
+        if ymin:
+            plt.xlim(xmin = xmin)
+        plt.grid(True, linestyle='-', color='0.75')
+        if show:
+            plt.show()
+        if save:
+            plt.savefig(figure.png)
