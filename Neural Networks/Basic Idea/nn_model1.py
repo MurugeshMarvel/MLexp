@@ -3,14 +3,14 @@
 import numpy as np
 #collection data
 
-x = np.array([[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,1,1]])
-y = np.array([[0],[0],[0],[0],[0],[1]])
+x = np.array([[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,1,1],[2,3,1]])
+y = np.array([[0],[0],[0],[0],[0],[1],[3]])
 
 print x
 
 print "The output "
 
-print y
+print np.shape(y)
 #building Model
 
 
@@ -47,7 +47,7 @@ for j in xrange(epoch_no):
 
 	l1_error = l2_del.dot(weight1.T)
 
-	l1_delta = error * nonlin(l1,deriv=True)
+	l1_delta = l1_error * nonlin(l1,deriv=True)
 
 	weight0 += l0.T.dot(l1_delta)
 	weight1 += l1.T.dot(l2_del)
