@@ -71,9 +71,19 @@ x_after = x[inflec_value:]
 y_after = y[inflec_value:]
 
 f_before = sc.poly1d(sc.polyfit(x_before, y_before,1))
-f_after = sc.poly1d(sc.polyfit(x_after, y_after,1))
+f_after = sc.poly1d(sc.pdolyfit(x_after, y_after,1))
 visualise(x,y,[f_before, f_after],threshold=inflec_value)
 print 'error for order 1 :', error(f1,x,y)
 print '\t \t order 2 :',error(f2,x,y)
 print 'adding separated error of the inflection'
 print 'Error is ',(error(f_before,x_before,y_before) + error(f_after, x_after, y_after))
+
+#Slicing Data for testing and training
+ratio = 0.3
+split_id = int(ration*len(x_after))
+shuffled = sp.random.permutation(list(range(len(x_after))))
+test = sorted(shuffled[:split_id])
+train = sorted(shuffled[split_id:])
+fbt1 = sc.poly1d(sc.polyfit(x_after[train], y_after[train], 1))
+fbt2 = sc.poly1d(sc.polyfit(x_after[train], y_after[train],1))
+print()
