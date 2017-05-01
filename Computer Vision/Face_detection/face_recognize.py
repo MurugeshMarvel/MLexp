@@ -5,14 +5,14 @@ import numpy
 class data:
     def __init__(self,name):
         self.name = name
-        haar_file = 'haarcascade_frontalface_default.xml'
-        datasets = 'datasets'  #All the faces data will be present this folder
-        sub_data = 'murugesh'     #These are sub data sets of folder, for my faces I've used my name
+        haar_file = 'coin_cascade.xml'
+        datasets = 'Datasets'  #All the faces data will be present this folder
+        sub_data = '5_Rupee'     #These are sub data sets of folder, for my faces I've used my name
 
         path = os.path.join(datasets, sub_data)
         if not os.path.isdir(path):
             os.mkdir(path)
-        (width, height) = (130, 100)    # defining the size of images 
+        (width, height) = (30, 30)    # defining the size of images 
 
 
         face_cascade = cv2.CascadeClassifier(haar_file)
@@ -20,7 +20,7 @@ class data:
 
         # The program loops until it has 30 images of the face.
         count = 1
-        while count < 31: 
+        while count < 50: 
             (_, im) = webcam.read()
             gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.3, 4)
@@ -28,7 +28,7 @@ class data:
                 cv2.rectangle(im,(x,y),(x+w,y+h),(255,0,0),2)
                 face = gray[y:y + h, x:x + w]
                 face_resize = cv2.resize(face, (width, height))
-                cv2.imwrite('%s/%s.png' % (path,count), face_resize)
+                cv2.imwrite('%s/%s.jpg' % (path,count), face_resize)
             count += 1
     
             cv2.imshow('OpenCV', im)
@@ -39,8 +39,8 @@ class data:
 class recognise():
 
     size = 4
-    haar_file = 'haarcascade_frontalface_default.xml'
-    datasets = 'datasets'
+    haar_file = 'coin_cascade.xml'
+    datasets = 'Datasets'
     # Part 1: Create fisherRecognizer
     print('Training...')
     # Create a list of images and a list of corresponding names
@@ -55,7 +55,7 @@ class recognise():
                 images.append(cv2.imread(path, 0))
                 labels.append(int(label))
             id += 1
-    (width, height) = (130, 100)
+    (width, height) = (30, 30)
 
     # Create a Numpy array from the two lists above
     (images, labels) = [numpy.array(lis) for lis in [images, labels]]

@@ -1,8 +1,8 @@
 #creating database
 import cv2, sys, numpy, os
-haar_file = 'haarcascade_frontalface_default.xml'
-datasets = 'datasets'  #All the faces data will be present this folder
-sub_data = 'murugesh'     #These are sub data sets of folder, for my faces I've used my name
+haar_file = 'coin_cascade.xml'
+datasets = 'Datasets'  #All the faces data will be present this folder
+sub_data = '5_Rupee_coin'     #These are sub data sets of folder, for my faces I've used my name
 
 path = os.path.join(datasets, sub_data)
 if not os.path.isdir(path):
@@ -15,7 +15,7 @@ webcam = cv2.VideoCapture(0) #'0' is use for my webcam, if you've any other came
 
 # The program loops until it has 30 images of the face.
 count = 1
-while count < 31: 
+while count < 50: 
     (_, im) = webcam.read()
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 4)
