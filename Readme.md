@@ -1,6 +1,6 @@
-#ARTINTELL
+# ARTINTELL
 *This is Repository contains Very basic and some intermediate codes for learning Artificial Intelligence and its subfields like Reasoning system, Machine learning, Natural Language Processing, Speech Processing, Computer Vision and many.*
-###Prerequiste
+### Prerequiste
 1. Python 2.7
 2. Ipython Notebook
 3. Numpy
@@ -14,7 +14,7 @@
 ```
 pip install -r requirements.txt
 ```
-###Topics Covered
+### Topics Covered
 1. General Intelligence ALgorithms
 2. Natural Language Processing
 3. Machine learning
