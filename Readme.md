@@ -10,7 +10,7 @@
 7. PIL
 8. OpenCV
 9. matplotlib
-*The above mentioned prerequistics can be installed by the following code*
+   *The above mentioned prerequistics can be installed by the following code*
 ```
 pip install -r requirements.txt
 ```
