@@ -32,3 +32,20 @@ def get_minibatches_idx(n, minibatch_size, shuffle=False):
 	if (minibatch_start != n):
 		minibatches.append(idx_list[minibatch_start:])
 	return zip(range(len(minibatches)), minibatches)
+def get_dataset(name):
+	return datasets[name][0], datasets[name][1]
+def zipp(params, tparams):
+	for k,v in params.items():
+		tparams[k].set_value(v)
+def unzip(zipped):
+	new_params = OrderedDict()
+	for k,v in zipped.items():
+		new_params[k] = v.get_value()
+	return new_params
+
+def dropout_layer(state_before, use_noise, trng):
+	proj = t.switch(use_noise, (state_before * 
+					trng.binomial(state_before.shape,
+								p=0.5, n=1,
+								dtype=state_before.dtype)),
+					state_before * 0.5)
