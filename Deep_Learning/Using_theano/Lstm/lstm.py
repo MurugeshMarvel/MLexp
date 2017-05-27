@@ -49,3 +49,17 @@ def dropout_layer(state_before, use_noise, trng):
 								p=0.5, n=1,
 								dtype=state_before.dtype)),
 					state_before * 0.5)
+	return proj
+
+def _p(pp, name):
+	return '%s_%s' % (pp, name)
+
+def init_parames(options):
+	params = OrderedDict()
+	randn = np.random.rand(options['n_words'],
+							options['dim_proj'],)
+	params['Wemb'] = (0.01 * randn).astype(config.floatX)
+	params = get_layer(options['encoder'])[0](options, params,
+									prefix=options['encoder'])
+	params['U'] = 0.01 * np.random.randn(options['dim_proj'],
+										)
