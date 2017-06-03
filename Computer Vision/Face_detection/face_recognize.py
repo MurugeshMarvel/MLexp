@@ -78,7 +78,6 @@ class recognise():
             #Try to recognize the face
             prediction = model.predict(face_resize)
             cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), 3)
-        
             if prediction<500:
 
 	           cv2.putText(im,'%s - %.0f' % (names[prediction],prediction),(x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
