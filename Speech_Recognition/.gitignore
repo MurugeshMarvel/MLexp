@@ -1,0 +1,7 @@
+#ignore file for speech recognition project
+
+#dataset
+/Dataset
+
+#saved_model
+/saved_model
