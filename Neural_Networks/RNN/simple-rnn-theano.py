@@ -113,3 +113,6 @@ def gradient_check_theano(model, x, y, h=0.001, error_threshold=0.01):
                 return 
             it.iternext()
         print "Gradient check for parameter %s passed." % (pname)
+
+if __name__ == '__main__':
+    theano_mode = 
