@@ -1,5 +1,3 @@
-
-
 import math
 import random
 import string
@@ -120,7 +118,7 @@ class NN:
 
     def test(self, patterns):
         for p in patterns:
-            print(p[0], '->', self.update(p[0]))
+            print (""+str(p[0]) +"->" +str(self.update(p[0]))+"")
 
     def weights(self):
         print('Input weights:')
