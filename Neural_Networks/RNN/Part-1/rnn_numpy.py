@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__': # should make it a conditional statement if book corpus is not present
-	nltk.download("book")
+	#nltk.download("book")
 	vocabulary_size = 8000
 	unknown_token = "UNKNOWN_TOKEN"
 	sentence_start_token = "SENTENCE_START"
@@ -31,7 +31,7 @@ if __name__ == '__main__': # should make it a conditional statement if book corp
 		reader = csv.reader(f, skipinitialspace = True)
 		reader.next()
 		sentences = itertools.chain(*[nltk.sent_tokenize(x[0].decode('utf-8').lower())for x in reader])
-		sentences = ["%s%s%s"%(sentence_start_token,x,sentence_end_token) for x in sentences]
+		sentences = ["%s %s %s"%(sentence_start_token,x,sentence_end_token) for x in sentences]
 	print "Parsed %d sentences" %(len(sentences))
 	tokenized_sentences = [nltk.word_tokenize(sent) for sent in sentences]
 	word_freq = nltk.FreqDist(itertools.chain(*tokenized_sentences))
@@ -48,3 +48,5 @@ if __name__ == '__main__': # should make it a conditional statement if book corp
 	print "\n Example Sentences: '%s'"% sentences[0]
 	print "\n Example Sentence after Pre-processing: '%s'" %tokenized_sentences[0]
 
+	x_train = np.asarray([[word_to_index[w] for w in sent[:-1]] for sent in tokenized_sentences])
+	y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent])
