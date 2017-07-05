@@ -49,4 +49,10 @@ if __name__ == '__main__': # should make it a conditional statement if book corp
 	print "\n Example Sentence after Pre-processing: '%s'" %tokenized_sentences[0]
 
 	x_train = np.asarray([[word_to_index[w] for w in sent[:-1]] for sent in tokenized_sentences])
-	y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent])
+	y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent in tokenized_sentences])
+	x_example, y_example = x_train[17], y_train[17]
+	print "x:\n&s\n%s" %(" ".join([word_to_index]))
+
+
+def rnn_numpy():
+	value = np.random.random((3,2))
