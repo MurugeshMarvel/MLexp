@@ -3,8 +3,8 @@
 import numpy as np
 #collection data
 
-x = np.array([[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,1,1],[2,3,1]])
-y = np.array([[0],[0],[0],[0],[0],[1],[3]])
+x = np.array([[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,1]])
+y = np.array([[0],[1],[1],[1],[1],[1],[1]])
 
 print x
 
@@ -13,7 +13,7 @@ print "The output "
 print np.shape(y)
 #building Model
 
-epoch_no = 600000
+epoch_no = 6000
 
 weight0 = 2*np.random.random((3,4)) - 1
 weight1 = 2*np.random.random((4,1)) - 1
@@ -54,3 +54,9 @@ for j in xrange(epoch_no):
 		print 'Initial error is - ',error.mean()
 	if j%500 == 0:
 		print "%i iteration error is %s"%(j,str(error.mean()))
+
+print "Using the Trained net for testing the input '1,1,0' "
+test = ([0,0,0])
+hidden_layer = nonlin(np.dot(test, weight0))
+test_output = nonlin(np.dot(hidden_layer, weight1))
+print test_output
