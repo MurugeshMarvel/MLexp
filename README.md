@@ -1,6 +1,8 @@
 # ARTINTELL
 > This Repository provides necessary information for learning Artificial Intelligence and its different fields.
 
+**Please Visit the [Artintell website](http://artintell.xyz) for tutorial and practising tricks in Mathematics and AI.**
+
 *Most of the Examples are Tested and Deployed in Linux system*
 
 ## Artificial Intelligence
