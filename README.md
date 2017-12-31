@@ -1,7 +1,7 @@
 # ARTINTELL
 > This Repository provides necessary information for learning Artificial Intelligence and its different fields.
 
-**Please Visit my[personal blog](http://murugeshmarvel.github.io) for tutorial and practising tricks in Mathematics and AI.**
+**Please Visit my [personal blog](http://murugeshmarvel.github.io) for tutorial and practising tricks in Mathematics and AI.**
 
 *Most of the Examples are Tested and Deployed in Linux system*
 
