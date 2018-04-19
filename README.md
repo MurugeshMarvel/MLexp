@@ -54,13 +54,14 @@ pip install -r requirements.txt
 ```
 ### Topics Covered
 1. Maths for AI
-2. Natural Language Processing
-3. Machine learning
-4. Deep learning
-5. Computer Vision
-6. Reasoning
-7. Fuzzy Logics
-8. Expert Systems
+2. Basics AI Algorithms
+3. Natural Language Processing
+4. Machine learning
+5. Deep learning
+6. Computer Vision
+7. Reasoning
+8. Fuzzy Logics
+9. Expert Systems
 
 **Please Contribute your best for making this repo more reliable for learners use**
 
