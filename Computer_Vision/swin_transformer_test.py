@@ -11,6 +11,8 @@ from torchvision.transforms import ToTensor
 from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 
+from sklearn.metrics import accuracy_score
+
 logging.basicConfig(level=logging.INFO)
 
 TRAIN_BATCH_SIZE = 100
@@ -79,19 +81,21 @@ for e in range(NUM_EPOCH):
         valid_loss = 0.0
         total_valid_outs = []
         total_valid_preds = []
+    
         for val_data, val_out in tqdm(test_loader):
             total_valid_outs += val_out.tolist()
             if T.cuda.is_available():
                 val_data, val_out = val_data.cuda(), val_out.cuda()
             val_pred = model(val_data)
             # val_pred = val_pred.view(val_pred.size(0))
-            total_valid_preds += val_pred.tolist()
+            total_valid_preds += T.argmax(val_pred, dim=1).tolist()
             loss = loss_fn(val_pred, val_out)
             valid_loss += loss.item()
         total_valid_loss = valid_loss / len(test_loader)
         min_valid_loss = total_valid_loss if min_valid_loss == None else min_valid_loss
 
-        validation_log = f'Epoch {e+1} \t\t Validation Loss: {total_valid_loss}'
+        acc_score = accuracy_score(total_valid_outs, total_valid_preds)
+        validation_log = f'Epoch {e+1} \t\t Validation Loss: {total_valid_loss}, \t\t Accurary Score: {acc_score}'
         log_text += "######\n" + validation_log + "\n" + "######"
         logging.info(validation_log)
         with open(os.path.join(checkpoint_save_dir, 'training_log.txt'), 'w') as f:
