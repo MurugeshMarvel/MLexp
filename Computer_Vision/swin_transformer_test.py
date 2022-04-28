@@ -48,8 +48,9 @@ train_loader = DataLoader(trainset, shuffle=False, batch_size=TRAIN_BATCH_SIZE)
 test_loader = DataLoader(testset, shuffle=False, batch_size=TEST_BATCH_SIZE)
 
 loss_fn = T.nn.CrossEntropyLoss()
-optimizer_fn = T.optim.Adadelta(params=model.parameters(), lr=0.01, rho=0.95, eps=1e-08)
-
+#optimizer_fn = T.optim.Adadelta(params=model.parameters(), lr=0.01, rho=0.95, eps=1e-08)
+optimizer_fn = T.optim.SGD(model.parameters(), lr=0.01,
+                      momentum=0.5)
 if T.cuda.is_available():
     model.cuda()
     CUDA_FLAG = True
