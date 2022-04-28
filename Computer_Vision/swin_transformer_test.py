@@ -83,10 +83,10 @@ for e in range(NUM_EPOCH):
             total_valid_outs += val_out.tolist()
             if T.cuda.is_available():
                 val_data, val_out = val_data.cuda(), val_out.cuda()
-            val_pred, _ = model(val_data.float())
-            val_pred = val_pred.view(val_pred.size(0))
+            val_pred = model(val_data)
+            # val_pred = val_pred.view(val_pred.size(0))
             total_valid_preds += val_pred.tolist()
-            loss = loss_fn(val_pred.float(), val_out.float())
+            loss = loss_fn(val_pred, val_out)
             valid_loss += loss.item()
         total_valid_loss = valid_loss / len(test_loader)
         min_valid_loss = total_valid_loss if min_valid_loss == None else min_valid_loss
