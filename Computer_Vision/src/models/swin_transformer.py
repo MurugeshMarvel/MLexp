@@ -435,6 +435,7 @@ class SwinTransformer(nn.Module):
             drop_rate=0., attn_drop_rate=0., drop_path_rate=0.1,
             norm_layer=nn.LayerNorm, ape=False, patch_norm=True, weight_init='', **kwargs):
         super().__init__()
+        print(f"Global pool: - {global_pool}")
         assert global_pool in ('', 'avg')
         self.num_classes = num_classes
         self.global_pool = global_pool
@@ -554,5 +555,5 @@ class SwinTransformer(nn.Module):
         x = self.forward_features(x)
         _logger.debug(f"After Forward feature - {x.shape}")
         x = self.forward_head(x)
-        return F.log_softmax(x)
+        return x
 

@@ -1,0 +1,33 @@
+original_work_dir: ${hydra:runtime.cwd}
+data_dir: ${original_work_dir}/data/
+print_config: true
+ignore_warnings: true
+train: true
+test: true
+seed: null
+name: default
+model:
+  model_arch:
+    img_size: 28
+    patch_size: 2
+    in_chans: 1
+    num_classes: 10
+    global_pool: avg
+    embed_dim: 64
+    depths: -2,
+    num_heads: -8,
+    head_dim: None
+    window_size: 2
+    mlp_ratio: 4.0
+    qkv_bias: true
+    drop_rate: 0.1
+    attn_drop_rate: 0.1
+    drop_path_rate: 0.1
+    ape: false
+    patch_norm: true
+trainer:
+  gpus: 0
+  train_batch_size: 100
+  test_batch_size: 80
+  num_epoch: 100
+  validate_gap: 5

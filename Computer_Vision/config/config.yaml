@@ -1,9 +1,0 @@
-
-defaults:
-  - __self__
-  - datamodule: mnist.yaml
-  - model: capsnet.yaml
-  - callbacks: defaults.yaml
-  - logger: null
-  - log_dir: defaults.yaml
-  - trainer: defaults.yaml

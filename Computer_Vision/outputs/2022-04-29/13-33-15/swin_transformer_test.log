@@ -1,0 +1,19 @@
+[2022-04-29 13:33:15,659][root][INFO] - Built Model ===========================================================================
+Layer (type:depth-idx)                             Param #
+===========================================================================
+SwinTransformer                                    --
+├─PatchEmbed: 1-1                                  --
+│    └─Conv2d: 2-1                                 320
+│    └─LayerNorm: 2-2                              128
+├─Dropout: 1-2                                     --
+├─Sequential: 1-3                                  --
+│    └─BasicLayer: 2-3                             --
+│    │    └─Sequential: 3-1                        100,112
+├─LayerNorm: 1-4                                   128
+├─Linear: 1-5                                      650
+===========================================================================
+Total params: 101,194
+Trainable params: 101,194
+Non-trainable params: 0
+===========================================================================
+[2022-04-29 13:33:15,735][root][INFO] - Output tensor shape from the model - torch.Size([1, 10])

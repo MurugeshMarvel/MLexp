@@ -1,0 +1,18 @@
+model_arch: 
+  img_size: 28 
+  patch_size: 2
+  in_chans: 1
+  num_classes: 10 
+  global_pool: avg
+  embed_dim: 64
+  depths: [2]
+  num_heads: [8]
+  #head_dim: None
+  window_size: 2 
+  mlp_ratio: 4. 
+  qkv_bias: True
+  drop_rate: 0.1 
+  attn_drop_rate: 0.1
+  drop_path_rate: 0.1
+  ape: False
+  patch_norm: True
