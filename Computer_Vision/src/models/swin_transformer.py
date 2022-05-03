@@ -89,8 +89,8 @@ def window_partition(x, window_size: int):
         windows: (num_windows*B, window_size, window_size, C)
     """
     B, H, W, C = x.shape
-    _logger.debug(f"Input for window partition shape - {x.shape}")
-    _logger.debug(f"trying to change shape to {H // window_size}, {window_size}, {W // window_size}, {window_size}, {C}")
+    _logger.info(f"Input for window partition shape - {x.shape}")
+    _logger.info(f"trying to change shape to {H // window_size}, {window_size}, {W // window_size}, {window_size}, {C}")
     x = x.view(B, H // window_size, window_size, W // window_size, window_size, C)
     windows = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(-1, window_size, window_size, C)
     return windows
@@ -392,15 +392,15 @@ class BasicLayer(nn.Module):
             self.downsample = None
 
     def forward(self, x):
-        _logger.debug(f"Input for Basic Layer - {x.shape}")
+        _logger.info(f"Input for Basic Layer - {x.shape}")
         if self.grad_checkpointing and not torch.jit.is_scripting():
             x = checkpoint_seq(self.blocks, x)
         else:
             x = self.blocks(x)
-        _logger.debug(f"Output from Block Layer - {x.shape}")
+        _logger.info(f"Output from Block Layer - {x.shape}")
         if self.downsample is not None:
             x = self.downsample(x)
-            _logger.debug(f"After downsampling block output - {x.shape}")
+            _logger.info(f"After downsampling block output - {x.shape}")
         return x
 
 
@@ -533,16 +533,16 @@ class SwinTransformer(nn.Module):
 
     def forward_features(self, x):
         x = self.patch_embed(x)
-        _logger.debug(f"After patch embedding - {x.shape}")
+        _logger.info(f"After patch embedding - {x.shape}")
         if self.absolute_pos_embed is not None:
             x = x + self.absolute_pos_embed
-            _logger.debug(f"After Absolute Positional embedding - {x.shape}")
+            _logger.info(f"After Absolute Positional embedding - {x.shape}")
         x = self.pos_drop(x)
-        _logger.debug(f"After postitional embed dropout - {x.shape}")
+        _logger.info(f"After postitional embed dropout - {x.shape}")
         x = self.layers(x)
-        _logger.debug(f"After Swin Layers - {x.shape}")
+        _logger.info(f"After Swin Layers - {x.shape}")
         x = self.norm(x)  # B L C
-        _logger.debug(f"After Norm - {x.shape}")
+        _logger.info(f"After Norm - {x.shape}")
         return x
 
     def forward_head(self, x, pre_logits: bool = False):
@@ -551,9 +551,9 @@ class SwinTransformer(nn.Module):
         return x if pre_logits else self.head(x)
 
     def forward(self, x):
-        _logger.debug(f"Input shape - {x.shape}")
+        _logger.info(f"Input shape - {x.shape}")
         x = self.forward_features(x)
-        _logger.debug(f"After Forward feature - {x.shape}")
+        _logger.info(f"After Forward feature - {x.shape}")
         x = self.forward_head(x)
         return x
 

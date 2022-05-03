@@ -1,0 +1,5 @@
+name: MNIST
+img_height: 28
+img_width: 28
+img_channel: 1
+data_path: ../data/

@@ -5,10 +5,10 @@ model_arch:
   num_classes: 10 
   global_pool: avg
   embed_dim: 64
-  depths: [2]
-  num_heads: [8]
+  depths: [2, 2]
+  num_heads: [4, 4]
   #head_dim: None
-  window_size: 2 
+  window_size: 1
   mlp_ratio: 4. 
   qkv_bias: True
   drop_rate: 0.1 

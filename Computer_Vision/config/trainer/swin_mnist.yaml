@@ -1,7 +1,12 @@
-gpus: 0
+gpus: [0]
 
 train_batch_size: 100
 test_batch_size: 80
 
 num_epoch: 100
 validate_gap: 5
+
+checkpoint_save_dir: swin_mnist_testing
+
+optimizer:
+  learning_rate: 0.001
